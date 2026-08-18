@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('incomes', function (Blueprint $table) {
-            $table->integer('id_inc')->primary();
+        Schema::create('expenses', function (Blueprint $table) {
+            $table->integer('id_exp')->primary();
             $table->integer('amount');
             $table->dateTime('date');
             $table->enum("type",['cash','bank','ewallet']);
+            $table->enum("category",['housing','food','transportation','utilities','health']);
             $table->foreignId('id_user');
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('incomes');    
+        Schema::dropIfExists('expenses');
     }
 };
